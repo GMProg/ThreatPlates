@@ -15,7 +15,7 @@ LIBS_XML_FILE = "Libs\\Libs.xml"
 TEMPLATE_TOC_FILE = "Template_" + TOC_FILE
 TEMPLATE_LIBS_XML_FILE = os.path.split(LIBS_XML_FILE)[0] + "\\Template_" + os.path.split(LIBS_XML_FILE)[1]
 
-IGNORE_DIR = [".git", ".idea", "Source", "Test"]
+IGNORE_DIR = [".git", ".idea", "Source", "Test", ".release"]
 IGNORE_FILE = [".gitignore", "README.md", "packager.py", "TidyPlates_ThreatPlates.iml", "UsedColors", "exclude.lst",
                # Ignore this files because they are replaced with Classic/Retail specific versions:
                TOC_FILE, TEMPLATE_TOC_FILE, ".\\" + LIBS_XML_FILE, ".\\" + TEMPLATE_LIBS_XML_FILE]
