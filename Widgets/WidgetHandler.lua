@@ -11,7 +11,6 @@ local ADDON_NAME, Addon = ...
 local pairs, next = pairs, next
 
 -- WoW APIs
-local GetNamePlateForUnit = C_NamePlate.GetNamePlateForUnit
 
 -- ThreatPlates APIs
 
@@ -197,32 +196,6 @@ function WidgetHandler:NewWidget(widget_name)
     OnEnable = function(self) end, -- do nothing
     OnDisable = function(self)
       self:UnregisterAllEvents()
-    end,
-    GetThreatPlateForUnit = function(self, unitid)
-      if not unitid or unitid == "player" or UnitIsUnit("player", unitid) then return end
-
-      local plate = GetNamePlateForUnit(unitid)
-      if plate and plate.TPFrame.Active then
-        return plate.TPFrame
-      end
-    end,
-    GetWidgetFrameForUnit = function(self, unitid)
-      if not unitid or unitid == "player" or UnitIsUnit("player", unitid) then return end
-
-      local plate = GetNamePlateForUnit(unitid)
-      if plate and plate.TPFrame.Active then
-        local widget_frame = plate.TPFrame.widgets[self.Name]
-        if widget_frame.Active then
-          return widget_frame
-        end
-      end
-      -- local tp_frame = self:GetThreatPlateForUnit(unitid)
-      -- if tp_frame then
-      --   local widget_frame = tp_frame.widgets[self.Name]
-      --   if widget_frame.Active then
-      --     return widget_frame
-      --   end
-      -- end
     end,
   }
 
