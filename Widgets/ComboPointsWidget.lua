@@ -1166,7 +1166,7 @@ function Widget:UpdateSettings()
   -- Some of this could be configured outside of UpdateSettings, as it does not change based on settings, but for easier maintenance
   -- I am configuring everything here
   if PlayerClass == "DEATHKNIGHT" then
-    if Addon.ExpansionIsClassicAndAtLeast(LE_EXPANSION_WRATH_OF_THE_LICH_KING) or  then
+    if Addon.ExpansionIsClassicAndAtLeast(LE_EXPANSION_WRATH_OF_THE_LICH_KING) then
       GetRuneStatus = GetRuneStateWrath
       UpdateRuneStatusActive = UpdateRuneStatusActiveWrath
       UpdateRuneStatusInactive = UpdateRuneStatusInactiveWrath

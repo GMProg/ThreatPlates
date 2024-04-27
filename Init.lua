@@ -61,7 +61,7 @@ end
 
 -- For Mainline, this always returns true. 
 Addon.ExpansionIsAtLeast = function(expansion_id)
-	return Addon.IS_MAINLINE or Addon.ClassicExpansionIsAtLeast(expansion_id)
+	return Addon.IS_MAINLINE or Addon.ExpansionIsClassicAndAtLeast(expansion_id)
 end
 
 ---------------------------------------------------------------------------------------------------

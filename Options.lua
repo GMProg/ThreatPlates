@@ -769,7 +769,7 @@ function Addon:SetCVarsForOcclusionDetection()
   end
 
   -- Occlusion detection does not work when a target is selected in Classic, see https://github.com/Stanzilla/WoWUIBugs/issues/134
-  if Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC then
+  if not Addon.IS_MAINLINE then
     local not_selected_alpha =  CVars:GetAsNumber("nameplateNotSelectedAlpha")
     if not not_selected_alpha or (not_selected_alpha < occluded_alpha_mult + 0.1) then
       not_selected_alpha = occluded_alpha_mult + 0.1
@@ -2548,7 +2548,7 @@ end
     name = L["Quest"],
     order = 100,
     type = "group",
-    hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end,
+    hidden = function() return not Addon.IS_MAINLINE end,
     args = {
       Enable = GetEnableEntry(L["Enable Quest Widget"], L["This widget shows a quest icon above unit nameplates or colors the nameplate healthbar of units that are involved with any of your current quests."], "questWidget", true,
         function(info, val)
@@ -3207,7 +3207,7 @@ local function CreateExperienceWidgetOptions()
     type = "group",
     order = 54,
     childGroups = "tab",
-    hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end,
+    hidden = function() return not Addon.IS_MAINLINE end,
     set = SetValueWidget,
     args = {
       Enable = GetEnableEntry(
@@ -4892,7 +4892,7 @@ local function CreateAurasWidgetOptions()
                     end,
                     arg = { "AuraWidget", "Debuffs", "ShowBlizzardForFriendly" },
                     disabled = function() return not db.AuraWidget.Debuffs.ShowFriendly end,
-                    hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end
+                    hidden = function() return not Addon.IS_MAINLINE end
                   },
                   Dispellable = {
                     name = L["Dispellable"],
@@ -5038,7 +5038,7 @@ local function CreateAurasWidgetOptions()
                     end,
                     arg = { "AuraWidget", "Debuffs", "ShowBlizzardForEnemy" },
                     disabled = function() return not db.AuraWidget.Debuffs.ShowEnemy end,
-                    hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end
+                    hidden = function() return not Addon.IS_MAINLINE end
                   },
                 },
               },
@@ -5136,7 +5136,7 @@ local function CreateAurasWidgetOptions()
                     end,
                     arg = { "AuraWidget", "CrowdControl", "ShowBlizzardForFriendly" },
                     disabled = function() return not db.AuraWidget.CrowdControl.ShowFriendly end,
-                    hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end
+                    hidden = function() return not Addon.IS_MAINLINE end
                   },
                   Dispellable = {
                     name = L["Dispellable"],
@@ -5192,7 +5192,7 @@ local function CreateAurasWidgetOptions()
                     end,
                     arg = { "AuraWidget", "CrowdControl", "ShowAllEnemy" },
                     disabled = function() return not db.AuraWidget.CrowdControl.ShowEnemy end,
-                    hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end
+                    hidden = function() return not Addon.IS_MAINLINE end
                   },
                   Blizzard = {
                     name = L["Blizzard"],
@@ -5206,7 +5206,7 @@ local function CreateAurasWidgetOptions()
                     end,
                     arg = { "AuraWidget", "CrowdControl", "ShowBlizzardForEnemy" },
                     disabled = function() return not db.AuraWidget.CrowdControl.ShowEnemy end,
-                    hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end
+                    hidden = function() return not Addon.IS_MAINLINE end
                   },
                 },
               },
@@ -5640,12 +5640,8 @@ local function CreateBlizzardSettings()
             type = "execute",
             width = "double",
             func = function()
-              if Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC then
-                InterfaceOptionsFrame_OpenToCategory(_G["InterfaceOptionsNamesPanel"])
-              else
-                Settings.OpenToCategory(_G["InterfaceOptionsNamesPanel"])
-              end
-              Addon.LibAceConfigDialog:Close("Threat Plates");
+              Settings.OpenToCategory(_G["SettingsPanel"])
+              Addon.LibAceConfigDialog:Close("Threat Plates")
             end,
           },
         },
@@ -5818,7 +5814,7 @@ local function CreateBlizzardSettings()
                 type = "description",
                 order = 1,
                 name = L["Because of side effects with Blizzard nameplates, this function is disabled in instances or when Blizzard nameplates are used for friendly or neutral/enemy units (see General - Visibility)."],
-                hidden = function() return not (Addon.IS_CLASSIC and Addon.IS_TBC_CLASSIC and Addon.IS_WRATH_CLASSIC) or (not db.ShowFriendlyBlizzardNameplates and not db.ShowEnemyBlizzardNameplates) end,
+                hidden = function() return not Addon.WOW_USES_CLASSIC_NAMEPLATES or (not db.ShowFriendlyBlizzardNameplates and not db.ShowEnemyBlizzardNameplates) end,
                 width = "full",
               },
               ToggleSync = {
@@ -5944,7 +5940,7 @@ local function CreateBlizzardSettings()
                 order = 10,
                 type = "range",
                 min = 0,
-                max = (Addon.IS_CLASSIC  and 20) or (Addon.IS_TBC_CLASSIC and 41) or (Addon.IS_WRATH_CLASSIC and 41) or 100,
+                max = (Addon.IS_CLASSIC  and 20) or (Addon.IS_TBC_CLASSIC and 41) or (Addon.IS_WRATH_CLASSIC and 41) or (Addon.IS_CATA_CLASSIC and 41) or 100,
                 step = 1,
                 width = "double",
                 desc = L["The max distance to show nameplates."],
@@ -6035,6 +6031,7 @@ local function CreateBlizzardSettings()
         inline = false,
         set = SetValue,
         get = GetValue,
+        hidden = function() return not Addon.IS_MAINLINE end,
         args = {
           Scale = GetScaleEntry(L["Scale"], 10, { "BlizzardSettings", "Widgets", "Scale" }, nil, 0.3, 3.0),
           Positioning = {
@@ -6497,14 +6494,14 @@ local function CreateHealthbarOptions()
                 order = 29,
                 type = "toggle",
                 arg = { "settings", "healthbar", "ShowHealAbsorbs" },
-                hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end,
+                hidden = function() return not Addon.IS_MAINLINE end, -- Absorbs were added with Mists
               },
               ShowAbsorbs = {
                 name = L["Absorbs"],
                 order = 30,
                 type = "toggle",
                 arg = { "settings", "healthbar", "ShowAbsorbs" },
-                hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end,
+                hidden = function() return not Addon.IS_MAINLINE end, -- Absorbs were added with Mists
               },
               ShowMouseoverHighlight = {
                 type = "toggle",
@@ -6629,7 +6626,7 @@ local function CreateHealthbarOptions()
                 order = 90,
                 type = "group",
                 inline = true,
-                hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end,
+                hidden = function() return not Addon.IS_MAINLINE end, -- Absorbs were added with Mists
                 args = {
                   AbsorbColor = {
                     name = L["Color"],
@@ -7431,7 +7428,7 @@ local function CreateNamesOptions()
               --   order = 30,
               --   type = "toggle",
               --   arg = { "settings", "name", "ShowPvPRank" },
-              --   hidden = function() return not Addon.IS_CLASSIC and not Addon.IS_TBC_CLASSIC and not Addon.IS_WRATH_CLASSIC end,
+              --   hidden = function() return Addon.IS_MAINLINE end,
               -- },
             },
           },
@@ -10119,7 +10116,7 @@ local function CreateOptionsTable()
                       type = "group",
                       inline = true,
                       set = SetThemeValue,
-                      hidden = function() return Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC end,
+                      hidden = function() return not Addon.IS_MAINLINE end, -- Absorbs were added with Mists
                       args = {
                         EnableAmount = {
                           name = L["Amount"],
@@ -10842,7 +10839,7 @@ local function CreateOptionsTable()
               desc = L["Set the roles your specs represent."],
               disabled = function() return not db.threat.ON end,
               order = 70,
-              args = ((Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC or Addon.IS_CATA_CLASSIC) and CreateSpecRolesClassic()) or CreateSpecRolesRetail(),
+              args = (Addon.IS_MAINLINE and CreateSpecRolesRetail()) or CreateSpecRolesClassic(),
             },
           },
         },
@@ -11108,7 +11105,7 @@ function Addon:ProfChange()
       base.ClassIconWidget.args.Textures.args["Prev" .. i].image = path .. "ClassIconWidget\\" .. db.classWidget.theme .. "\\" .. class
     end
 
-    if not Addon.IS_CLASSIC and not Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC then
+    if Addon.IS_MAINLINE then
       base.QuestWidget.args.ModeIcon.args.Texture.args.Preview.image = path .. "QuestWidget\\" .. db.questWidget.IconTexture
     end
 
@@ -11151,7 +11148,7 @@ function TidyPlatesThreat:ConfigTableChanged(event, app_name)
 end
 
 function Addon:OpenOptions()
-  HideUIPanel(InterfaceOptionsFrame)
+  HideUIPanel(SettingsPanel)
   HideUIPanel(GameMenuFrame)
 
   RegisterOptionsTable()

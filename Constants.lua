@@ -578,7 +578,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
         x = 0,
         y = 4,
         align = "CENTER",
-        vertical = "CENTER",
+        vertical = "MIDDLE",
       },
       customtext = {
         size = 8,
@@ -589,7 +589,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
         x = 0,
         y = -6,
         align = "CENTER",
-        vertical = "CENTER",
+        vertical = "MIDDLE",
       },
       useAlpha = false,
       -- blizzFading = true, -- removed in 8.5.1
@@ -768,7 +768,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
           flags = "OUTLINE",
           Shadow = true,
           HorizontalAlignment = "CENTER",
-          VerticalAlignment = "CENTER",
+          VerticalAlignment = "MIDDLE",
         },
       },
     },
@@ -869,7 +869,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             }
           },
           StackCount = {
@@ -885,7 +885,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             }
           },
         },
@@ -915,7 +915,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "LEFT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
           Duration = {
@@ -931,7 +931,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
           StackCount = {
@@ -947,7 +947,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "CENTER",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
         },
@@ -1010,7 +1010,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             }
           },
           StackCount = {
@@ -1026,7 +1026,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             }
           },
         },
@@ -1056,7 +1056,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "LEFT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
           Duration = {
@@ -1072,7 +1072,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
           StackCount = {
@@ -1088,7 +1088,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "CENTER",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
         },
@@ -1144,7 +1144,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "THICKOUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             }
           },
           StackCount = {
@@ -1160,7 +1160,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             }
           },
         },
@@ -1190,7 +1190,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "LEFT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
           Duration = {
@@ -1206,7 +1206,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "RIGHT",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
           StackCount = {
@@ -1222,7 +1222,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
               flags = "OUTLINE",
               Shadow = true,
               HorizontalAlignment = "CENTER",
-              VerticalAlignment = "CENTER",
+              VerticalAlignment = "MIDDLE",
             },
           },
         },
@@ -1329,7 +1329,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
           flags = "",
           Shadow = true,
           HorizontalAlignment = "RIGHT",
-          VerticalAlignment = "CENTER",
+          VerticalAlignment = "MIDDLE",
         }
       },
     },
@@ -1599,7 +1599,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
           flags = "",
           Shadow = true,
           HorizontalAlignment = "LEFT",
-          VerticalAlignment = "CENTER",
+          VerticalAlignment = "MIDDLE",
         }
       },
       ExperienceText = {
@@ -1616,7 +1616,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
           flags = "",
           Shadow = true,
           HorizontalAlignment = "RIGHT",
-          VerticalAlignment = "CENTER",
+          VerticalAlignment = "MIDDLE",
         }
       },
     },
@@ -1805,7 +1805,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
             flags = "",
             Shadow = true,
             HorizontalAlignment = "LEFT",
-            VerticalAlignment = "CENTER",
+            VerticalAlignment = "MIDDLE",
           }
         },
       },
@@ -1847,7 +1847,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
           VerticalOffset = 0,
           Font = {
             HorizontalAlignment = "RIGHT",
-            VerticalAlignment = "CENTER",
+            VerticalAlignment = "MIDDLE",
           },
         },
         FrameOrder = "HealthbarOverCastbar",
@@ -1883,7 +1883,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
         x = 0,
         y = 13,
         align = "CENTER",
-        vertical = "CENTER",
+        vertical = "MIDDLE",
         ShowTitle = false,
         ShowRealm = false,
         --
@@ -1903,7 +1903,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
         x = 44, -- old default: 50,
         y = 0,
         align = "RIGHT",
-        vertical = "CENTER", -- old default: "TOP",
+        vertical = "MIDDLE", -- old default: "TOP",
         shadow = true,
         flags = "",
         show = true,
@@ -1925,7 +1925,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
         x = 0,
         y = 0, -- old default: 1,
         align = "CENTER",
-        vertical = "CENTER",
+        vertical = "MIDDLE",
         shadow = true,
         flags = "",
         --
@@ -1947,7 +1947,7 @@ ThreatPlates.DEFAULT_SETTINGS = {
         -- x_hv = 0,    -- Removed in 9.2.0
         -- y_hv = -20,  -- Removed in 9.2.0 -- old default: -13
         align = "LEFT",
-        vertical = "CENTER",
+        vertical = "MIDDLE",
         shadow = true,
         flags = "",
         show = true,
