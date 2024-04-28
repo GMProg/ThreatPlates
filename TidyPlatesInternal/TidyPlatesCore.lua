@@ -1905,7 +1905,7 @@ CoreEvents.UNIT_TARGET = UNIT_TARGET
 -- Do this after events are registered, otherwise UNIT_AURA would be registered as a general event, not only as
 -- an unit event.
 local ENABLE_UNIT_AURA_FOR_CLASS = {
-  PALADIN = Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC or Addon.IS_CATA_CLASSIC,
+  PALADIN = true,
   DEATHKNIGHT = Addon.IS_WRATH_CLASSIC or Addon.IS_CATA_CLASSIC,
   -- For Season of Discovery
   SHAMAN = Addon.IS_CLASSIC_SOD,

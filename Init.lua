@@ -32,30 +32,17 @@ Addon.IS_MAINLINE = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
 -- Addon.IS_TBC_CLASSIC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC and LE_EXPANSION_LEVEL_CURRENT == LE_EXPANSION_BURNING_CRUSADE)
 -- Addon.IS_WRATH_CLASSIC = (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC and LE_EXPANSION_LEVEL_CURRENT == LE_EXPANSION_WRATH_OF_THE_LICH_KING)
 Addon.WOW_USES_CLASSIC_NAMEPLATES = (Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC or Addon.IS_CATA_CLASSIC)
-
-Addon.ClassicExpansionIsAtLeast = function(expansion_id)
-	if not ClassicExpansionIsAtLeast then
-		-- Method does not exist which means that this is the most recent / highest WoW version (Mainline) 
-		-- so we have to return true
-		return true
-	elseif not expansion_id then
-		-- Method exists, so this is a Classic WoW version, but as the expansion id is unknown, the expansion is 
-		-- an older one, so we have to return false
-		return false
-	else
-		return ClassicExpansionIsAtLeast(expansion_id)
-	end
-end
+-- ? Addon.WOW_FEATURE_ABSORBS
 
 Addon.ExpansionIsClassicAndAtLeast = function(expansion_id)
 	-- Method does not exist which means that this is the most recent / highest WoW version (Mainline) 
 	-- so we have to return true
 	-- Method exists, so this is a Classic WoW version, but as the expansion id is unknown, the expansion is 
 	-- an older one, so we have to return false
-	if not ClassicExpansionIsAtLeast or not expansion_id then
-		return false
+	if expansion_id then
+		return GetClassicExpansionLevel() > expansion_id
 	else
-		return ClassicExpansionIsAtLeast(expansion_id)
+		return false
 	end
 end
 
@@ -150,9 +137,6 @@ Addon.Debug = {}
 if Addon.IS_MAINLINE then
 	Addon.UnitDetailedThreatSituationWrapper = UnitDetailedThreatSituation
 	Addon.IsSoloShuffle = C_PvP.IsSoloShuffle
-elseif Addon.IS_CATA_CLASSIC then
-	Addon.UnitDetailedThreatSituationWrapper = UnitDetailedThreatSituation
-	Addon.IsSoloShuffle = function() return false end
 else
   Addon.UnitDetailedThreatSituationWrapper = function(source, target)
     local is_tanking, status, threatpct, rawthreatpct, threat_value = UnitDetailedThreatSituation(source, target)

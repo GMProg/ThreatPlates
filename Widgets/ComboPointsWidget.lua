@@ -15,7 +15,7 @@ local floor, min = floor, min
 local tostring, string_format = tostring, string.format
 
 -- WoW APIs
-local GetTime = GetTime
+local GetTime, tContains = GetTime, tContains
 local UnitCanAttack = UnitCanAttack
 local UnitPower, UnitPowerMax, GetComboPoints, GetRuneCooldown, GetRuneType = UnitPower, UnitPowerMax, GetComboPoints, GetRuneCooldown, GetRuneType
 local GetUnitChargedPowerPoints, GetPowerRegenForPowerType = GetUnitChargedPowerPoints, GetPowerRegenForPowerType
@@ -877,11 +877,10 @@ function Widget:OnEnable()
     -- otherwise happening compared to Blizzard essences (Blizzard_ClassNameplateBar uses this also)
     self:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player", EventHandlerEvoker)
   else
-    if Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC then
-      self:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player", EventHandler)
-    else
-      self:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", EventHandler)
-      self:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player", EventHandler)
+    self:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", EventHandler)
+    self:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player", EventHandler)
+    -- UNIT_POWER_POINT_CHARGE: Shadowlands Patch 9.0.1 (2020-10-13): Added.
+    if Addon.IS_MAINLINE then
       self:RegisterUnitEvent("UNIT_POWER_POINT_CHARGE", "player", EventHandler)
     end
 
@@ -908,15 +907,15 @@ function Widget:OnDisable()
 
   
   self:UnregisterEvent("UNIT_POWER_FREQUENT")
-  if not (Addon.IS_CLASSIC or Addon.IS_TBC_CLASSIC or Addon.IS_WRATH_CLASSIC) then
-    self:UnregisterEvent("UNIT_POWER_UPDATE")
-    self:UnregisterEvent("UNIT_DISPLAYPOWER")
+  self:UnregisterEvent("UNIT_POWER_UPDATE")
+  self:UnregisterEvent("UNIT_DISPLAYPOWER")
+  if Addon.IS_MAINLINE then
     self:UnregisterEvent("UNIT_POWER_POINT_CHARGE")
   end
   
   self:UnregisterEvent("UPDATE_SHAPESHIFT_FORM")
+  self:UnregisterEvent("RUNE_POWER_UPDATE")
   if Addon.ExpansionIsAtLeast(LE_EXPANSION_WRATH_OF_THE_LICH_KING) then
-    self:UnregisterEvent("RUNE_POWER_UPDATE")
     self:UnregisterEvent("RUNE_TYPE_UPDATE")
   end
 

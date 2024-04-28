@@ -163,6 +163,7 @@ local function ChatCommandDebug(cmd_list)
 		print("Addon.ExpansionIsAtLeast()",  Addon.ExpansionIsAtLeast())
 		print("Addon.WOW_USES_CLASSIC_NAMEPLATES:", Addon.WOW_USES_CLASSIC_NAMEPLATES)
 		print("Addon.ExpansionIsAtLeast(LE_EXPANSION_BURNING_CRUSADE):", Addon.ExpansionIsAtLeast(LE_EXPANSION_BURNING_CRUSADE))
+		print("Addon.ExpansionIsAtLeast(LE_EXPANSION_WRATH_OF_THE_LICH_KING):", Addon.ExpansionIsAtLeast(LE_EXPANSION_WRATH_OF_THE_LICH_KING))
 	else
 		Addon.Logging.Error(L["Unknown option: "] .. command)
 		PrintHelp()

@@ -30,10 +30,10 @@ local _G =_G
 -- Global functions for accessing the configuration
 ---------------------------------------------------------------------------------------------------
 
+-- GetSpecialization: Mists - Patch 5.0.4 (2012-08-28): Replaced GetPrimaryTalentTree.
 if Addon.IS_MAINLINE then
   local PLAYER_ROLE_BY_SPEC = ThreatPlates.SPEC_ROLES[Addon.PlayerClass]
 
-  -- GetSpecialization: Mists - Patch 5.0.4 (2012-08-28): Replaced GetPrimaryTalentTree.
   function Addon:PlayerRoleIsTank()
     local db = Addon.db
     if db.profile.optionRoleDetectionAutomatic then
@@ -1018,7 +1018,7 @@ local function MigrateCustomStylesToV3(profile_name, profile)
 
         -- Set automatic icon detection for all existing custom nameplates to false
         unique_unit.UseAutomaticIcon = false
-        unique_unit.icon = GetValueOrDefault(unique_unit.icon, (Addon.IS_CLASSIC and "Spell_nature_spiritwolf.blp") or "spell_shadow_shadowfiend.blp")
+        unique_unit.icon = GetValueOrDefault(unique_unit.icon, "spell_shadow_shadowfiend.blp")
       end
     end
   end

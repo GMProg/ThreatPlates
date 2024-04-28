@@ -50,6 +50,8 @@ local HEALER_SPECIALIZATION_ID = {
 -- Store localized names for specializations for parsing the battleground score
 local HEALER_CLASSES = {}
 local HEALER_SPECS = {}
+
+-- GetSpecializationInfoByID: Warlords of Draenor Patch 6.2.0 (2015-06-23): Added GetSpecializationInfoForSpecID()
 if Addon.IS_MAINLINE then
   for specialization_id, _ in pairs(HEALER_SPECIALIZATION_ID) do
     local _, name, _, _, _, classFile, _ =  GetSpecializationInfoByID(specialization_id)

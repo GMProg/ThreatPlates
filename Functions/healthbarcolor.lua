@@ -35,7 +35,7 @@ local _G =_G
 -- Wrapper functions for WoW Classic
 ---------------------------------------------------------------------------------------------------
 
--- Quest tooltips:
+-- Quest tooltips: not sure since when available
 if not Addon.IS_MAINLINE then -- 
   -- Quest widget is not available in Classic
   ShowQuestUnit = function(...) return false end
